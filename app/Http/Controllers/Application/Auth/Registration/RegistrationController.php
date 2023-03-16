@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 class RegistrationController extends Controller
 {
     /**
-     * Registration Authentification
-     * @return string
+     * Registration Authentification View
+     * @return \Illuminate\View\View
      */
-    public function __invoke(): String 
+    public function __invoke()
     {
-        return "Registration Authentification";
+        return view('auth.registration.index');
     }
 }

@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /**
-     * Login Authentification
-     * @return string
+     * Login Authentification View
+     * @return \Illuminate\View\View
      */
-    public function __invoke(): String
+    public function __invoke()
     {
-        return "Login Authentification";
+        return view('auth.login.index');
     }
 }
