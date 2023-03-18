@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home Path
+Route::get('/', APP_PATH . Dashboard\DashboardController::class)->name('dashboard.view');
+
 // Auth Path
 Route::prefix('auth')->group(function() {
     // Login Main View

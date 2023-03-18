@@ -3,20 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Page</title>
+    <title>CLS | Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
   <body>
 	{{-- Container --}}
 	<div class="container w-25 m-auto mt-4">
 		<h2 class="text-center">Login Page</h2>
+		{{-- Message Area --}}
+		@if (Session::has(config('message.status.fail')))
+			<div class="alert alert-danger">
+				<p>{{ Session::get(config('message.status.fail')) }}</p>
+			</div>
+		@endif 
 		<hr>
 		<form action="{{ route('auth.login.stepin') }}" method="POST">
 			@csrf
 			{{-- Username --}}
 			<div class="mb-3">
 				<label for="username" class="form-label">Username</label>
-				<input type="text" name="username" class="form-control" id="username" placeholder="damenjoSitepu">
+				<input type="text" name="username" value="{{ old('username') }}" class="form-control" id="username" placeholder="damenjoSitepu">
 				<small class="text-danger mt-2 d-block">@error('username') {{ $message }}  @enderror</small>
 			</div>
 			{{-- Password --}}
