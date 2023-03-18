@@ -11,16 +11,19 @@
 	<div class="container w-25 m-auto mt-4">
 		<h2 class="text-center">Login Page</h2>
 		<hr>
-		<form>
+		<form action="{{ route('auth.login.stepin') }}" method="POST">
+			@csrf
 			{{-- Username --}}
 			<div class="mb-3">
 				<label for="username" class="form-label">Username</label>
-				<input type="text" class="form-control" id="username" placeholder="damenjoSitepu">
+				<input type="text" name="username" class="form-control" id="username" placeholder="damenjoSitepu">
+				<small class="text-danger mt-2 d-block">@error('username') {{ $message }}  @enderror</small>
 			</div>
 			{{-- Password --}}
 			<div class="mb-3">
 				<label for="password" class="form-label">Password</label>
-				<input type="password" class="form-control" id="password" placeholder="*******">
+				<input type="password" name="password" class="form-control" id="password" placeholder="*******">
+				<small class="text-danger mt-2 d-block">@error('password') {{ $message }} @enderror</small>
 			</div>
 
 			<button class="btn btn-block btn-primary m-auto d-block w-50">Login</button>

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Prefix App Controller
-define('APP_PATH',config('controller.app_path'));
+!defined('APP_PATH') && define('APP_PATH',config('controller.app_path'));
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +22,9 @@ Route::prefix('auth')->group(function() {
     Route::get('/', APP_PATH . Auth\Login\LoginController::class)->name('auth.login.view');
     // Registration Main View
     Route::get('/registration', APP_PATH . Auth\Registration\RegistrationController::class)->name('auth.registration.view');
+    // Registration Create Function
+    Route::post('/registration',[APP_PATH . Auth\Registration\RegistrationController::class,'establish'])->name('auth.registration.establish');
+    // Login Function
+    Route::post('/step-in',[APP_PATH . Auth\Login\LoginController::class,'stepIn'])->name('auth.login.stepin');
 });
 

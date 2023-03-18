@@ -11,26 +11,46 @@
 	<div class="container w-25 m-auto mt-4">
 		<h2 class="text-center">Registration Page</h2>
 		<hr>
-		<form>
+
+		{{-- Success Message --}}
+		@if (Session::has('success'))
+			<div class="alert alert-success">
+				<p>{{ Session::get('success') }}</p>
+			</div>
+		@endif
+
+		{{-- Fail Message --}}
+		@if (Session::has('fail'))
+			<div class="alert alert-danger">
+				<p>{{ Session::get('fail') }}</p>
+			</div>
+		@endif
+
+		<form action="{{ route('auth.registration.establish') }}" method="POST">
+			@csrf
 			{{-- Full Name --}}
 			<div class="mb-3">
 				<label for="full_name" class="form-label">Full Name</label>
-				<input type="text" class="form-control" id="full_name" placeholder="Damenjo Sitepu">
+				<input type="text" value="{{ old('full_name') }}" name="full_name" class="form-control" id="full_name" placeholder="Damenjo Sitepu">
+				<small class="text-danger mt-2 d-block">@error('full_name') {{ $message }} @enderror</small>
 			</div>
 			{{-- Email --}}
 			<div class="mb-3">
 				<label for="email" class="form-label">Email</label>
-				<input type="email" class="form-control" id="email" placeholder="damenjo@example.com">
+				<input type="email" value="{{ old('email') }}" name="email" class="form-control" id="email" placeholder="damenjo@example.com">
+				<small class="text-danger mt-2 d-block">@error('email') {{ $message }} @enderror</small>
 			</div>
 			{{-- Username --}}
 			<div class="mb-3">
 				<label for="username" class="form-label">Username</label>
-				<input type="text" class="form-control" id="username" placeholder="damenjoSitepu">
+				<input type="text" value="{{ old('username') }}" name="username" class="form-control" id="username" placeholder="damenjoSitepu">
+				<small class="text-danger mt-2 d-block">@error('username') {{ $message }} @enderror</small>
 			</div>
 			{{-- Password --}}
 			<div class="mb-3">
 				<label for="password" class="form-label">Password</label>
-				<input type="password" class="form-control" id="password" placeholder="*******">
+				<input type="password" value="{{ old('password') }}" name="password" class="form-control" id="password" placeholder="*******">
+				<small class="text-danger mt-2 d-block">@error('password') {{ $message }} @enderror</small>
 			</div>
 
 			<button class="btn btn-block btn-primary w-50 d-block m-auto">Register</button>

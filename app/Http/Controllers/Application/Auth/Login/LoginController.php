@@ -15,4 +15,14 @@ class LoginController extends Controller
     {
         return view('auth.login.index');
     }
+    
+    public function stepIn(Request $req)
+    {
+        $req->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        return "Successfully Login";
+    }
 }
