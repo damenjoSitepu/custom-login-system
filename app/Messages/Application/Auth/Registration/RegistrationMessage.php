@@ -2,8 +2,17 @@
 
 namespace App\Messages\Application\Auth\Registration;
 
-class RegistrationMessage {
+// Interface
+use App\Interfaces\Application\Auth\Registration\RegistrationMessageInterface;
+class RegistrationMessage implements RegistrationMessageInterface {
+	/**
+	 * Success register message properties
+	 */
     private static $successRegister = 'User Successfully Registered';
+
+	/**
+	 * Fail register message properties
+	 */
 	private static $failRegister = 'User Failed Registered';
 
 	/**

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Application\Auth\Registration;
 
 use App\Http\Controllers\Controller;
-use Illuminate\View\View;
 
 // Interfaces
 use App\Interfaces\Application\Auth\Registration\RegistrationRepositoryInterface;
+use App\Interfaces\Application\Auth\Registration\RegistrationControllerInterface;
+
+// Laravel Type Hinting
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 // Request
 use App\Http\Requests\Application\Auth\Registration\RegistrationRequest;
@@ -15,7 +18,7 @@ use App\Http\Requests\Application\Auth\Registration\RegistrationRequest;
 // Message
 use App\Messages\Application\Auth\Registration\RegistrationMessage;
 
-class RegistrationController extends Controller
+class RegistrationController extends Controller implements RegistrationControllerInterface
 {
     /**
      * Registration Authentification View
