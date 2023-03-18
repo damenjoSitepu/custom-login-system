@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Application\Auth\Registration;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-// Message Status Config
-!defined('SUCCESS') && define('SUCCESS', config('message.status.success', 'success'));
-!defined('FAIL') && define('FAIL', config('message.status.fail', 'fail'));
+use Illuminate\View\View;
 
 // Interfaces
 use App\Interfaces\Application\Auth\Registration\RegistrationRepositoryInterface;
+use Illuminate\Http\RedirectResponse;
+
+// Request
+use App\Http\Requests\Application\Auth\Registration\RegistrationRequest;
+
+// Message
+use App\Messages\Application\Auth\Registration\RegistrationMessage;
 
 class RegistrationController extends Controller
 {
@@ -18,7 +21,7 @@ class RegistrationController extends Controller
      * Registration Authentification View
      * @return \Illuminate\View\View
      */
-    public function __invoke()
+    public function __invoke(): View
     {
         return view('auth.registration.index');
     }
@@ -34,22 +37,18 @@ class RegistrationController extends Controller
 
     /**
      * Create New User
-     * @param Illuminate\Http\Request
+     * @param App\Http\Requests\Application\Auth\Registration\RegistrationRequest
      * @return Illuminate\Http\RedirectResponse
      */
-    public function establish(Request $req)
+    public function establish(RegistrationRequest $req): RedirectResponse
     {
         // Request Validation
-        $req->validate([
-            'full_name' => 'required',
-            'email'     => 'required',
-            'username'  => 'required',
-            'password'  => 'required'
-        ]);
+        $req->validated();
         
-        if ($this->registrationRepository->establish($req))
-            return back()->with(SUCCESS,'User Successfully Registered');
+        if ($this->registrationRepository->establish($req)) {
+            return back()->with(config('message.status.success'),RegistrationMessage::successRegister());
+        }
 
-        return back()->with(FAIL,'User Failed To Registered');
+        return back()->with(config('message.status.fail'),RegistrationMessage::failRegister());
     }
 }

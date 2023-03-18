@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('full_name',200)->index();
             $table->string('email',100)->unique()->index();
             $table->string('username',50)->unique()->index();
-            $table->string('password',50);
+            $table->text('password');
         });
     }
 

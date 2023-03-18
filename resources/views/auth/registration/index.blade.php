@@ -13,16 +13,16 @@
 		<hr>
 
 		{{-- Success Message --}}
-		@if (Session::has('success'))
+		@if (Session::has(config('message.status.success')))
 			<div class="alert alert-success">
-				<p>{{ Session::get('success') }}</p>
+				<p>{{ Session::get(config('message.status.success')) }}</p>
 			</div>
 		@endif
 
 		{{-- Fail Message --}}
-		@if (Session::has('fail'))
+		@if (Session::has(config('message.status.fail')))
 			<div class="alert alert-danger">
-				<p>{{ Session::get('fail') }}</p>
+				<p>{{ Session::get(config('message.status.fail')) }}</p>
 			</div>
 		@endif
 
