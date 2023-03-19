@@ -9,7 +9,7 @@ interface DashboardRepositoryInterface {
     /**
 	 * Display Full Name User Info
 	 * @param string
-	 * @return App\Models\Application\User
+	 * @return mixed<App\Models\Application\User, string>
 	 */
-	public function profileInfo(string $id): ?User;
+	public function profileInfo(string $id): mixed;
 }

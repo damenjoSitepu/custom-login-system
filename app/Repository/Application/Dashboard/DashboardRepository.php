@@ -7,18 +7,20 @@ use App\Models\Application\User;
 // Interfaces
 use App\Interfaces\Application\Dashboard\DashboardRepositoryInterface;
 // Text Status 
-use App\TextStatus\Application\Auth\Credential\CredentialTextStatus;
+use App\TextStatus\Application\Dashboard\DashboardTextStatus;
 
 class DashboardRepository implements DashboardRepositoryInterface {
     /**
 	 * Display Full Name User Info
 	 * @param string
-	 * @return App\Models\Application\User
+	 * @return mixed<App\Models\Application\User, string>
 	 */
-	public function profileInfo(string $id): ?User
+	public function profileInfo(string $id): mixed
     {
-        return User::select('full_name')
+        $user = User::select('full_name')
                     ->where('id',$id)
                     ->first();
+        
+        return empty($user) && !$user ? DashboardTextStatus::invalidFullName() : $user;
     }
 }
