@@ -13,6 +13,10 @@ use App\TextStatus\Application\Auth\Login\LoginTextStatus;
 
 
 class LoginService {
+    /**
+     * Instantiate
+     * @param App\Interfaces\Application\Auth\Login\LoginRepositoryInterface
+     */
     public function __construct(
         private LoginRepositoryInterface $loginRepository
     ){}

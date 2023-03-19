@@ -17,6 +17,8 @@ use App\Http\Requests\Application\Auth\Registration\RegistrationRequest;
 
 // Message
 use App\Messages\Application\Auth\Registration\RegistrationMessage;
+// Text Status
+use App\TextStatus\Application\Auth\Registration\RegistrationTextStatus;
 
 class RegistrationController extends Controller implements RegistrationControllerInterface
 {
@@ -47,11 +49,11 @@ class RegistrationController extends Controller implements RegistrationControlle
     {
         // Request Validation
         $req->validated();
-        
-        if ($this->registrationRepository->establish($req)) {
-            return back()->with(config('message.status.success'),RegistrationMessage::successRegister());
-        }
-
-        return back()->with(config('message.status.fail'),RegistrationMessage::failRegister());
+        // Save user process
+        $saveUserProcess = $this->registrationRepository->establish($req);
+        if($saveUserProcess === RegistrationTextStatus::invalidRegistration()) 
+            return back()->with(config('message.status.fail'),RegistrationMessage::failRegister());
+            
+        return back()->with(config('message.status.success'),RegistrationMessage::successRegister());
     }
 }

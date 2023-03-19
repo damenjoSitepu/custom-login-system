@@ -45,12 +45,14 @@ class LoginController extends Controller implements LoginControllerInterface
     {
         // Request Validation
         $req->validated();
-        // Check if username is exists
+        // Check user credential authentification
         $userInfo = $this->loginService->checkUserInfo($req);
         if ($userInfo === LoginTextStatus::invalidUsername()) 
             return back()->with(config('message.status.fail'),LoginMessage::failUsernameLogin())->withInput();
         if ($userInfo === LoginTextStatus::invalidPassword()) 
             return back()->with(config('message.status.fail'),LoginMessage::failPasswordLogin())->withInput();
+        // Set Session
+        session()->put('userCredential',$userInfo->id);
         // Login Success
         return redirect()->route('dashboard.view')->with(config('message.status.success'),LoginMessage::successLogin($userInfo->full_name));
     }

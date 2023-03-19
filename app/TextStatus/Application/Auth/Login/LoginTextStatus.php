@@ -2,7 +2,9 @@
 
 namespace App\TextStatus\Application\Auth\Login;
 
-class LoginTextStatus {
+// Interfaces
+use App\Interfaces\Application\Auth\Login\LoginTextStatusInterface;
+class LoginTextStatus implements LoginTextStatusInterface {
     /**
 	 * Username not found properties
 	 */

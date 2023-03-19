@@ -11,5 +11,5 @@ interface RegistrationRepositoryInterface {
 	 * @param Illuminate\Http\Request
 	 * @return bool
 	 */
-	public function establish(Request $registrationData): bool;
+	public function establish(Request $registrationData): string;
 }
