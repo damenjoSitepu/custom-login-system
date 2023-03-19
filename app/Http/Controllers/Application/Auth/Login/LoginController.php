@@ -52,7 +52,7 @@ class LoginController extends Controller implements LoginControllerInterface
         if ($userInfo === LoginTextStatus::invalidPassword()) 
             return back()->with(config('message.status.fail'),LoginMessage::failPasswordLogin())->withInput();
         // Set Session
-        session()->put('userCredential',$userInfo->id);
+        $req->session()->put('userCredential',$userInfo->id);
         // Login Success
         return redirect()->route('dashboard.view')->with(config('message.status.success'),LoginMessage::successLogin($userInfo->full_name));
     }

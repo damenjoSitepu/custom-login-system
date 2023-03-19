@@ -17,7 +17,7 @@ class LoginRepository implements LoginRepositoryInterface {
 	 */
     public function checkUserInfoByUsername(string $username): ?User 
     {
-    	return User::select('username','password','full_name')
+    	return User::select('id','username','password','full_name')
 					->where('username',$username)->first();
 	}
 }

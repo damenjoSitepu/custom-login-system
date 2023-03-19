@@ -2,14 +2,15 @@
 
 namespace App\Providers;
 
-// Registration Interface
-
-
+// Login
 use App\Interfaces\Application\Auth\Login\LoginRepositoryInterface;
-use App\Interfaces\Application\Auth\Registration\RegistrationRepositoryInterface;
 use App\Repository\Application\Auth\Login\LoginRepository;
+// Registration
+use App\Interfaces\Application\Auth\Registration\RegistrationRepositoryInterface;
 use App\Repository\Application\Auth\Registration\RegistrationRepository;
-
+// Dashboard
+use App\Interfaces\Application\Dashboard\DashboardRepositoryInterface;
+use App\Repository\Application\Dashboard\DashboardRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -21,6 +22,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(RegistrationRepositoryInterface::class, RegistrationRepository::class);
         $this->app->bind(LoginRepositoryInterface::class, LoginRepository::class);
+        $this->app->bind(DashboardRepositoryInterface::class, DashboardRepository::class);
     }
 
     /**
