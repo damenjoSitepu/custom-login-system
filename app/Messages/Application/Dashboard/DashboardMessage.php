@@ -7,16 +7,7 @@ use App\Interfaces\Application\Dashboard\DashboardMessageInterface;
 
 class DashboardMessage implements DashboardMessageInterface {
     /**
-	 * Success register message properties
+	 * Fail to get full name
 	 */
-    private static $failGetFullName = 'User is empty';
-
-    /**
-     * When user is not found
-     * @return string
-     */
-    public static function failGetFullName(): string 
-    {
-        return self::$failGetFullName;
-    }
+    const FAIL_GET_FULL_NAME = 'Username can\'t be found because User credential is wrong';
 }

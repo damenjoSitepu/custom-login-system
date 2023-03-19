@@ -38,12 +38,14 @@ class DashboardController extends Controller
 
         // If credential is invalid
         if ($userId === CredentialTextStatus::invalidUserCredential())
-            return redirect()->route('auth.login.view')->with(config('message.status.fail'),CredentialMessage::failCredential());
+            return redirect()->route('auth.login.view')
+                            ->with(config('message.status.fail'),CredentialMessage::USER_CREDENTIAL_NOT_FOUND);
 
         // Find Full name by user id credential
         $userFullName = $this->dashboardRepository->profileInfo($userId);
         if ($userFullName === DashboardTextStatus::invalidFullName())
-            return redirect()->route('auth.login.view')->with(config('message.status.fail'),DashboardMessage::failGetFullName());
+            return redirect()->route('auth.login.view')
+                            ->with(config('message.status.fail'),DashboardMessage::USERNAME_NOT_FOUND);
             
         // Return Dashboard view
         return view('dashboard.index', [
