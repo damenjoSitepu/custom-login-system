@@ -28,15 +28,14 @@ class LoginService {
      */
     public function checkUserInfo(LoginRequest $req): mixed
     {
-        // Check if username is exists
+        // Fetch data
         $userInfo = $this->loginRepository->checkUserInfoByUsername($req->username);
-        if (empty($userInfo) && !$userInfo) {
+        // Check if username is exists
+        if (empty($userInfo) && !$userInfo) 
             return LoginTextStatus::invalidUsername();
-        }
         // Check if password doesn't match
-        if (!Hash::check($req->password,$userInfo->password)) {
+        if (!Hash::check($req->password,$userInfo->password)) 
             return LoginTextStatus::invalidPassword();
-        }
         // Success Login
         return $userInfo;
     }

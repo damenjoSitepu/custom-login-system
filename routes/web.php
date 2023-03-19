@@ -24,10 +24,12 @@ Route::prefix('auth')->group(function() {
     // Login Main View
     Route::get('/', APP_PATH . Auth\Login\LoginController::class)->name('auth.login.view');
     // Registration Main View
-    Route::get('/registration', APP_PATH . Auth\Registration\RegistrationController::class)->name('auth.registration.view');
+    Route::get('registration', APP_PATH . Auth\Registration\RegistrationController::class)->name('auth.registration.view');
     // Registration Create Function
-    Route::post('/registration',[APP_PATH . Auth\Registration\RegistrationController::class,'establish'])->name('auth.registration.establish');
+    Route::post('registration',[APP_PATH . Auth\Registration\RegistrationController::class,'establish'])->name('auth.registration.establish');
     // Login Function
-    Route::post('/step-in',[APP_PATH . Auth\Login\LoginController::class,'stepIn'])->name('auth.login.stepin');
+    Route::post('step-in',[APP_PATH . Auth\Login\LoginController::class,'stepIn'])->name('auth.login.step-in');
+    // Logout Function
+    Route::get('step-out', APP_PATH . Auth\Logout\LogoutController::class)->name('auth.logout.step-out');
 });
 

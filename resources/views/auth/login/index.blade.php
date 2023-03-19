@@ -17,7 +17,7 @@
 			</div>
 		@endif 
 		<hr>
-		<form action="{{ route('auth.login.stepin') }}" method="POST">
+		<form action="{{ route('auth.login.step-in') }}" method="POST">
 			@csrf
 			{{-- Username --}}
 			<div class="mb-3">

@@ -31,6 +31,7 @@ class LoginMessage implements LoginMessageInterface {
 
     /**
      * When user fail to login because invalid username
+     * @return string
      */
     public static function failUsernameLogin(): string
     {
@@ -39,6 +40,7 @@ class LoginMessage implements LoginMessageInterface {
 
     /**
      * When user fail to login because password doesn't match
+     * @return string
      */
     public static function failPasswordLogin(): string
     {
