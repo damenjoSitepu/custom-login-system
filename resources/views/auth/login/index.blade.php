@@ -16,6 +16,11 @@
 				<p>{{ Session::get(config('message.status.fail')) }}</p>
 			</div>
 		@endif 
+		@if (Session::has(config('message.stat.fail')))
+			<div class="alert alert-danger">
+				<p>{{ Session::get(config('message.stat.fail')) }}</p>
+			</div>
+		@endif 
 		<hr>
 		<form action="{{ route('auth.login.step-in') }}" method="POST">
 			@csrf

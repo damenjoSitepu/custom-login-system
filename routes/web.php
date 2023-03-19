@@ -16,11 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Home Path
-Route::get('/', APP_PATH . Dashboard\DashboardController::class)->name('dashboard.view');
+// Guarded Route
+Route::middleware('block.app.access')->group(function() {
+    // Home Path
+    Route::get('/', APP_PATH . Dashboard\DashboardController::class)->name('dashboard.view');
+});
 
 // Auth Path
-Route::prefix('auth')->group(function() {
+Route::middleware('block.auth.access')->prefix('auth')->group(function() {
     // Login Main View
     Route::get('/', APP_PATH . Auth\Login\LoginController::class)->name('auth.login.view');
     // Registration Main View

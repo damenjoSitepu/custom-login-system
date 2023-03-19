@@ -27,6 +27,13 @@
 
 	{{-- Container --}}
 	<div class="container w-100 m-auto mt-4">
+		{{-- Message Area --}}
+		@if (Session::has(config('message.stat.fail')))
+			<div class="alert alert-danger">
+				<p>{{ Session::get(config('message.stat.fail')) }}</p>
+			</div>
+		@endif 
+
 		@if (Session::has(config('message.status.success')))
 			<div class="bg-primary text-light rounded shadow-lg p-3">
 				<h4>{{ Session::get(config('message.status.success')) }}</h4>
